@@ -33,7 +33,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
   };
 
   useEffect(() => {
-    fetch('https://buildyourtech.dtechne.com/backend/productos/')
+    fetch('https://bdbuildyourteach.dtechne.com/backend/productos/')
       .then(response => {
         if (!response.ok) throw new Error("Error al obtener los productos");
         return response.json();
