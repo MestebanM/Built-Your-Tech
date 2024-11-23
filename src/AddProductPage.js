@@ -37,7 +37,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const fetchAllProducts = useCallback(async () => {
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/api/productos');
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/api/productos');
       if (!response.ok) {
         throw new Error('Error al cargar los productos');
       }
@@ -79,7 +79,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
     }
 
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/api/productos/${productId}`);
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/api/productos/${productId}`);
       if (!response.ok) {
         throw new Error('Producto no encontrado');
       }
@@ -182,7 +182,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
     }
 
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/api/productos/crear/', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/api/productos/crear/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),
@@ -221,7 +221,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
     }
 
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/api/productos/${productId}/editar/`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/api/productos/${productId}/editar/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),
@@ -243,7 +243,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/api/productos/${productId}/eliminar/`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/api/productos/${productId}/eliminar/`, {
         method: 'DELETE',
       });
 

@@ -31,7 +31,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const fetchAllUsers = async () => {
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/usuarios/');
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/usuarios/');
       const data = await response.json();
       if (Array.isArray(data)) {
         setAllUsers(data);
@@ -57,7 +57,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
     }
 
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/usuarios/${userId}`);
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/usuarios/${userId}`);
       if (!response.ok) throw new Error('Usuario no encontrado');
       const data = await response.json();
       setUserData({
@@ -90,7 +90,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const handleCreateConfirm = async () => {
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/usuarios/crear', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/usuarios/crear', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -116,7 +116,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/usuarios/${userId}/editar`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/usuarios/${userId}/editar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -140,7 +140,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/usuarios/${userId}/eliminar`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/usuarios/${userId}/eliminar`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Error al eliminar usuario');

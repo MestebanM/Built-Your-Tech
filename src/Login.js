@@ -24,7 +24,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/backend/login', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

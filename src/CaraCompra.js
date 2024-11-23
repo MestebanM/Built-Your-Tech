@@ -30,7 +30,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
 
   const fetchAllCompras = async () => {
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/cara_compras/');
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/cara_compras/');
       const data = await response.json();
       console.log('Datos de compras:', data);
       if (Array.isArray(data)) {
@@ -54,7 +54,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
     }
 
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/cara_compras/${userId}`);
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/cara_compras/${userId}`);
       if (!response.ok) throw new Error('Compra no encontrada');
       const data = await response.json();
       setUserData({
@@ -123,7 +123,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
       console.log('Payload convertido a números:', payload);
 
       // Enviar datos al backend
-      const response = await fetch('https://buildyourtech.dtechne.com/cara_compras/crear', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/cara_compras/crear', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -172,7 +172,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
 
       console.log('Datos enviados al backend:', payload);
 
-      const response = await fetch(`https://buildyourtech.dtechne.com/cara_compras/${userId}/editar`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/cara_compras/${userId}/editar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -202,7 +202,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/cara_compras/${userId}/eliminar`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/cara_compras/${userId}/eliminar`, {
         method: 'DELETE',
       });
 

@@ -17,7 +17,7 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   useEffect(() => {
     // Obtener los productos más vendidos desde el backend
-    fetch('https://buildyourtech.dtechne.com/api/top-products')
+    fetch('https://bdbuildyourteach.dtechne.com/api/top-products')
       .then((response) => response.json())
       .then((data) => {
         // Concatenar ID y nombre para las etiquetas de la gráfica
@@ -79,7 +79,7 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
   const handleSearch = () => {
     if (searchId.trim() === '') return;
   
-    fetch(`https://buildyourtech.dtechne.com/api/product/${searchId}`)
+    fetch(`https://bdbuildyourteach.dtechne.com/api/product/${searchId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Producto no encontrado');

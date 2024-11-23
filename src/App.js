@@ -106,7 +106,7 @@ function App() {
 
     try {
       setIsRegistering(true); // Desactiva el botón
-      const response = await fetch('https://buildyourtech.dtechne.com/backend/register', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -139,7 +139,7 @@ function App() {
     const credentials = { email, password, captcha: captchaToken };
 
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/backend/login', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),

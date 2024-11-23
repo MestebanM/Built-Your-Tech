@@ -56,7 +56,7 @@ const Register = () => {
     };
 
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/backend/register', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

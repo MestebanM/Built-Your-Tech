@@ -112,7 +112,7 @@ const ChatPage = ({ user, onLoginClick, onLogoutClick }) => {
     if (!user) return;
 
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/backend/create-formulario', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/create-formulario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const ChatPage = ({ user, onLoginClick, onLogoutClick }) => {
 
     try {
       setIsFetchingResults(true); // Indicar que se están cargando los resultados
-      const response = await fetch(`https://buildyourtech.dtechne.com/backend/recomendaciones-detalles`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/backend/recomendaciones-detalles`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -211,7 +211,7 @@ const ChatPage = ({ user, onLoginClick, onLogoutClick }) => {
 
   useEffect(() => {
     // Llamar al backend para obtener el rango de precios
-    fetch('https://buildyourtech.dtechne.com/backend/productos/rango-precios')
+    fetch('https://bdbuildyourteach.dtechne.com/backend/productos/rango-precios')
       .then(response => {
         if (!response.ok) throw new Error("Error al obtener el rango de precios");
         return response.json();
@@ -516,7 +516,7 @@ const ChatPage = ({ user, onLoginClick, onLogoutClick }) => {
 
     try {
       setIsSubmitting(true);
-      const response = await fetch("https://buildyourtech.dtechne.com/backend/save-form", {
+      const response = await fetch("https://bdbuildyourteach.dtechne.com/backend/save-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

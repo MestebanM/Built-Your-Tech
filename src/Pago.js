@@ -55,7 +55,7 @@ const Pago = ({ onClose, totalAmount, user, cartItems, onPaymentSuccess }) => {
     }
 
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/backend/crear-compra', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/crear-compra', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(compraData),

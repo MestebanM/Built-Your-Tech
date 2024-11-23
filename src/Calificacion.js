@@ -11,7 +11,7 @@ const Calificacion = ({ product, closeModal, user }) => {
   // Cargar comentarios al abrir el modal
   useEffect(() => {
     if (product) {
-      fetch(`https://buildyourtech.dtechne.com/backend/comments/${product.id}`)
+      fetch(`https://bdbuildyourteach.dtechne.com/backend/comments/${product.id}`)
         .then(response => response.json())
         .then(data => {
           if (data.success) {
@@ -43,7 +43,7 @@ const Calificacion = ({ product, closeModal, user }) => {
       comment,
     };
 
-    fetch('https://buildyourtech.dtechne.com/backend/comments', {
+    fetch('https://bdbuildyourteach.dtechne.com/backend/comments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

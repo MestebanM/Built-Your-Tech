@@ -38,7 +38,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
 
   const fetchAllCompras = async () => {
     try {
-      const response = await fetch('https://buildyourtech.dtechne.com/compras/');
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/compras/');
       const data = await response.json();
       console.log('Datos de compras:', data); // Agrega este log para depuración
       if (Array.isArray(data)) {
@@ -67,7 +67,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
     }
 
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/compras/${idCompra}`);
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/compras/${idCompra}`);
       if (!response.ok) throw new Error('Compra no encontrada');
       const data = await response.json();
 
@@ -129,7 +129,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
     try {
       // Verificar si el usuario existe
       console.log("Verificando si el usuario existe:", compraData.id_usuario);
-      const userResponse = await fetch(`https://buildyourtech.dtechne.com/usuarios/${compraData.id_usuario}`);
+      const userResponse = await fetch(`https://bdbuildyourteach.dtechne.com/usuarios/${compraData.id_usuario}`);
       if (!userResponse.ok) {
         alert("El usuario ingresado no existe.");
         console.log("El usuario ingresado no existe:", compraData.id_usuario);
@@ -147,7 +147,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
       };
       console.log("Payload enviado al backend:", payload); // <-- Log para verificar
 
-      const response = await fetch('https://buildyourtech.dtechne.com/compra/crear', {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/compra/crear', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -192,7 +192,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
       return;
     }
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/compra/${idCompra}/editar`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/compra/${idCompra}/editar`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(compraData),
@@ -222,7 +222,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await fetch(`https://buildyourtech.dtechne.com/compra/${idCompra}/eliminar`, {
+      const response = await fetch(`https://bdbuildyourteach.dtechne.com/compra/${idCompra}/eliminar`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Error al eliminar la compra');
