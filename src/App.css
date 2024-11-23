@@ -1,0 +1,1024 @@
+/* Estilos generales1 */
+.App {
+  text-align: center;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+  width: 100vw;
+  height: 60px;
+  background-color: #87CEEB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Estilos para el contenedor de logo y nombre en la barra de bienvenida */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Añade los estilos para el enlace de acceso al catálogo aquí */
+.catalog-link {
+  color: #0056b3;
+  margin-right: 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.catalog-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para los botones y barra de búsqueda */
+.menu-button,
+.search-button,
+.login-button,
+.welcome-button,
+.add-to-cart,
+.ia-button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto hover para resaltar los botones */
+.menu-button:hover,
+.search-button:hover,
+.login-button:hover,
+.welcome-button:hover,
+.add-to-cart:hover,
+.ia-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Efecto active para cuando el botón es presionado */
+.menu-button:active,
+.search-button:active,
+.login-button:active,
+.welcome-button:active,
+.add-to-cart:active,
+.ia-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+}
+
+/* Efecto para el botón de búsqueda */
+.search-button {
+  padding: 8px; /* Reducir el padding para hacerlo más pequeño */
+  font-size: 14px; /* Ajustar el tamaño del texto o icono */
+  width: auto; /* Asegurar que no ocupe demasiado espacio */
+  height: auto; /* Para que se ajuste al contenido */
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+
+/* Estilo compartido para ambos botones en la barra de navegación */
+.navbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px; /* Tamaño uniforme */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 20px; /* Espacio entre botones */
+  height: 40px; /* Altura uniforme */
+  box-sizing: border-box;
+}
+
+.navbar-button:hover {
+  background-color: #003366;
+  transform: scale(1.1);
+}
+
+/* Estilos específicos para íconos dentro de los botones */
+.ia-icon-navbar,
+.user-icon {
+  height: 20px; /* Tamaño del ícono */
+  margin-right: 5px; /* Espacio entre el ícono y el texto */
+}
+
+/* Ajustes para que el botón de usuario tenga un borde similar al de la IA */
+.user-name {
+  display: flex;
+  align-items: center;
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px; /* Asegura que la curva sea igual a la del botón de IA */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: 2px solid #003366; /* Mismo color de borde que el botón de IA */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega una sombra similar */
+}
+
+.user-name:hover {
+  background-color: #003366;
+  color: #ffcc00; /* Color amarillo para el texto en hover, igual al de IA */
+  transform: scale(1.1); /* Efecto de escalado en hover */
+}
+
+/* Estilos para el enlace del catálogo */
+.catalog-link {
+  color: #0056b3;
+  margin-right: 20px; /* Da espacio antes del botón de usuario */
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.catalog-link:hover {
+  text-decoration: underline;
+  color: #003366;
+}
+
+
+.search-button:hover {
+  background-color: #004494;
+}
+
+.login-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Estilos para el botón de IA en la barra de navegación */
+.ia-button-navbar, .user-name {
+  display: flex;
+  align-items: center;
+  background-color: #0056b3;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid #003366; /* Mismo borde */
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+.ia-button-navbar:hover, .user-name:hover {
+  background-color: #003366;
+  transform: scale(1.1);
+}
+
+.ia-icon-navbar {
+  height: 20px;
+  margin-right: 5px;
+}
+
+.ia-label-navbar {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ia-button-navbar:hover {
+  background-color: #003366;
+  transform: scale(1.1);
+}
+
+
+.login-button .user-icon {
+  margin-right: 8px;
+}
+
+.login-button:hover {
+  background-color: #003366;
+  transform: scale(1.1);
+}
+
+/* Estilos para la página de bienvenida */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #87CEEB;
+  min-height: 100vh;
+}
+
+.welcome-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 80%;
+  max-width: 800px;
+}
+
+.welcome-logo {
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.welcome-title {
+  font-size: 36px;
+  color: #0056b3;
+}
+
+.welcome-description {
+  font-size: 18px;
+  color: #333;
+  margin: 20px 0;
+}
+
+.welcome-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.welcome-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.welcome-button:hover {
+  background-color: #003366;
+  transform: translateY(-3px) scale(1.05);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  background-color: #87CEEB;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 100px);
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.combined-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slogan {
+  font-size: 50px;
+  color: white;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.ia-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0056b3;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.ia-button:hover {
+  background-color: #003366;
+  color: #ffcc00;
+  transform: scale(1.1);
+}
+
+.ia-icon {
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+.logo {
+  height: 150px;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+
+.slogan {
+  font-size: 50px;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+/* Estilo para el mensaje de introducción */
+.intro-message {
+  font-size: 20px; /* Tamaño de fuente ajustado */
+  color: white; /* Cambia el color del texto a blanco */
+  text-align: center; /* Centrar el texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+  margin-top: 20px; /* Espacio entre el eslogan y el mensaje */
+  max-width: 80%; /* Limitar el ancho para evitar que el texto ocupe todo el espacio */
+}
+
+/* Estilos para el recuadro de la IA */
+.ia-section {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  justify-content: space-between;
+}
+
+.ia-text {
+  background-color: #87CEEB;
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  text-align: left;
+}
+
+.ia-button {
+  padding:  20px; /* Reducir el padding para hacerlo más pequeño */
+  font-size: 14px; /* Ajustar el tamaño del texto o icono */
+  width: auto; /* Asegurar que no ocupe demasiado espacio */
+  height: auto; /* Para que se ajuste al contenido */
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+
+.ia-button:hover {
+  background-color: #003366;
+  color: #ffcc00;
+  transform: scale(1.1) rotate(3deg);
+}
+
+.ia-icon {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.ia-label {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Barra de productos destacados y secciones similares */
+.products-bar {
+  width: 100vw;
+  height: 60px;
+  background-color: #87CEEB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+.products-title {
+  font-size: 36px;
+  color: white;
+}
+
+/* Contenedor de productos en formato de cuadrícula */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.product-card {
+  width: 100%;
+  max-width: 300px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Evita que el contenido se salga del contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido horizontalmente */
+  justify-content: space-between; /* Espacio entre los elementos para que se distribuya bien */
+}
+
+/* Efecto hover para los productos */
+.product-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido horizontalmente */
+}
+
+.product-description {
+  font-size: 18px;
+  color: #333;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column; /* Muestra los elementos en una columna */
+  align-items: center; /* Centra el contenido horizontalmente */
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+
+
+.product-details p {
+  margin: 4px 0; /* Espacio entre cada línea de información */
+}
+
+.product-price {
+  font-size: 22px;
+  color: #0056b3;
+  margin-bottom: 10px;
+}
+
+/* Efecto específico para los botones de agregar al carrito */
+.add-to-cart {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.add-to-cart:hover {
+  background-color: #003366;
+  color: #ffcc00;
+  transform: scale(1.05);
+}
+
+/* Estilos para el modal de inicio de sesión y registro */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #0056b3;
+}
+
+.modal-content input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal-content button:hover {
+  background-color: #003366;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.register-link {
+  color: #0056b3;
+  cursor: pointer;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para la sección de registro */
+.register-modal-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.register-modal-content h2 {
+  margin-bottom: 20px;
+  color: #0056b3;
+}
+
+.register-modal-content input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.register-modal-content button {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Aumenta este valor si es necesario */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.register-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 150px;
+}
+
+.register-button:hover {
+  background-color: #003366;
+}
+
+.verify-button {
+  background-color: #87CEEB;
+  color: #0056b3;
+  border: 1px solid #0056b3;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 150px;
+}
+
+.verify-button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+
+
+.form-buttons button {
+  width: 200px;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.register-modal-content button:hover {
+  background-color: #003366;
+}
+
+/* App.css */
+
+.cart-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-button span {
+  font-size: 20px;
+}
+
+.cart-button:hover {
+  background-color: #004494;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 5px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
+.cart-button span {
+  font-size: 20px;
+}
+
+.cart-button:hover {
+  background-color: #004494;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.login-button {
+  margin-left: 20px;
+}
+
+.logo-button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-button img {
+  height: 30px;
+  margin-right: 20px;
+}
+
+/* App.css */
+
+.cart-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-button span {
+  font-size: 20px;
+}
+
+.cart-button:hover {
+  background-color: #004494;
+}
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  font-size: 7px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Asegura que el número esté centrado verticalmente */
+}
+
+
+/* Estilos para el pie de página */
+.footer {
+  background-color: #2E2E3A;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+  color: #b8b8b8;
+}
+
+.footer-section ul li:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons span {
+  color: #b8b8b8;
+  cursor: pointer;
+}
+
+.social-icons span:hover {
+  color: #ffffff;
+}
+
+/* Ajustes específicos para el menú desplegable de "Compras" */
+.dropdown-container {
+  position: relative; /* Asegura que el contenido se posicione relativo al contenedor */
+  display: inline-block;
+}
+
+.dropdown-container .navbar-button {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-container:hover .navbar-button {
+  background-color: #003366;
+}
+
+.dropdown-content {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 200px; /* Ancho mínimo del menú */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra del menú */
+  z-index: 1000; /* Para asegurarse que esté encima de otros elementos */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dropdown-container:hover .dropdown-content {
+  display: block; /* Muestra el menú al hacer hover */
+}
+
+.dropdown-item {
+  color: #333;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Fondo en hover */
+  color: #0056b3; /* Color del texto en hover */
+}
+
+/* Ajustes generales para la barra de navegación */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaciado uniforme entre botones */
+}
+
+.navbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-button:hover {
+  background-color: #003366;
+  transform: scale(1.1);
+}
+
+/* Botón específico de usuario */
+.user-info .user-name {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: 2px solid #003366;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-info .user-name:hover {
+  background-color: #003366;
+  color: #ffcc00;
+  transform: scale(1.1);
+}
+
+/* Menú desplegable del usuario */
+.dropdown-menu {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.user-info:hover .dropdown-menu {
+  display: block; /* Muestra el menú al hacer hover */
+}
+
+.dropdown-item {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+  color: #0056b3;
+}
+
+/* Correcciones de márgenes y espaciados */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  background-color: #87CEEB;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logo-button img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+/* Estilo compartido para botones de la barra de navegación */
+.login-button {
+  padding: 8px; /* Reducir el padding para hacerlo más pequeño */
+  font-size: 14px; /* Ajustar el tamaño del texto o icono */
+  width: auto; /* Asegurar que no ocupe demasiado espacio */
+  height: auto; /* Para que se ajuste al contenido */
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.register-button {
+  padding: 10px; /* Reducir el padding para hacerlo más pequeño */
+  font-size: 14px; /* Ajustar el tamaño del texto o icono */
+  width: auto; /* Asegurar que no ocupe demasiado espacio */
+  height: auto; /* Para que se ajuste al contenido */
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Hover para ambos botones */
+.login-button:hover, .register-button:hover {
+  background-color: #003366;
+  transform: scale(1.1); /* Efecto de hover */
+}
+
+.login-button .user-icon, .register-button .user-icon {
+  margin-right: 8px; /* Espaciado entre ícono y texto */
+}

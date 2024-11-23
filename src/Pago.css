@@ -1,0 +1,161 @@
+/* Pago.css */
+
+.pago-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .pago-modal {
+    background-color: #fff;
+    padding: 30px;
+    width: 80%;
+    max-width: 450px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .pago-modal h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .total-amount {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0;
+  }
+  
+  .address-label,
+  .phone-label {
+    display: block;
+    margin-bottom: 15px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .address-label input,
+  .phone-label input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .address-label input:focus,
+  .phone-label input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+    outline: none;
+  }
+  
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .payment-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .payment-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .payment-button:hover:enabled {
+    background-color: #004099;
+  }
+  
+  .close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: #0056b3;
+    padding: 5px 8px; /* Reducir aún más el padding */
+    border-radius: 6px; /* Asegurar que los bordes no sean tan redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 12px; /* Reducir el tamaño de la fuente */
+  }
+  
+  .close-button:hover {
+    background-color: #cc0000;
+  }
+  
+  .confirmation-modal,
+  .thank-you-message {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .thank-you-message h2 {
+    color: #333;
+  }
+  
+  .thank-you-message p {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .back-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .back-button:hover {
+    background-color: #004099;
+  }
+  
+  .pay-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .pay-button:hover {
+    background-color: #218838;
+  }
+  

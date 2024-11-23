@@ -1,0 +1,285 @@
+/* General layout adjustments */
+.users-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .users-header {
+    background-color: #0056b3;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+  }
+  
+  .navbar-logo {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .navbar-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .header-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .users-content-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    align-items: flex-start;
+    margin-top: 100px;
+    width: 90%;
+  }
+  
+  /* Alineación del formulario y ajuste de tamaños para campos */
+  .users-content-left {
+    width: 40%;
+    background-color: white;
+    padding: 20px;
+    margin-left: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: grid; /* Usamos grid para alinear los campos */
+    gap: 15px; /* Espacio entre los campos */
+  }
+  
+  /* Contenedor para los campos y sus etiquetas */
+  .user-field {
+    display: grid; /* Usamos grid para alinear las etiquetas y campos */
+    grid-template-columns: 150px 1fr; /* La etiqueta tendrá 150px de ancho y el campo ocupará el resto */
+    align-items: center; /* Alinea el contenido al centro */
+  }
+  
+  .user-field label {
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .user-input {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    background-color: #f9f9f9;
+    font-size: 14px;
+  }
+  
+  /* Ajuste para el tamaño del input */
+  .search-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 180px;
+  }
+  
+  .search-button {
+    padding: 8px; /* Reducir el padding para hacerlo más pequeño */
+    font-size: 14px; /* Ajustar el tamaño del texto o icono */
+    width: auto; /* Asegurar que no ocupe demasiado espacio */
+    height: auto; /* Para que se ajuste al contenido */
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+  
+  /* Ajuste en la disposición de los botones de acción */
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .action-button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+  }
+  
+  
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .user-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .user-field label {
+    font-weight: bold;
+    min-width: 100px;
+    text-align: right;
+  }
+  
+  .user-input {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 80%; /* Ensures uniform width */
+    background-color: #f9f9f9;
+    font-size: 14px;
+  }
+  
+  .confirm-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .cancel-button {
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .confirm-button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  .confirmation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 2000;
+  }
+  
+  .confirmation-modal p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .user-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-table th, .user-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  /* Cambios en las columnas de la tabla */
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-table td {
+    text-align: center;
+  }
+  
+  /* Botones estilo imagen proporcionada */
+  .action-buttons button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .action-buttons button:disabled {
+    background-color: #cccccc;
+  }
+  
+  .navbar-button {
+    padding: 8px 12px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .navbar-button:hover {
+    background-color: #003d80;
+  }
+  
+  .navbar-icon {
+    width: 20px;
+    height: 20px;
+  }
+  

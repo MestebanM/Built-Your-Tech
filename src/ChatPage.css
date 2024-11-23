@@ -1,0 +1,352 @@
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Barra superior fija */
+.chat-header {
+  background-color: #0056b3;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 60px;
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.logo-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button {
+  padding: 8px; /* Reducir el padding para hacerlo más pequeño */
+  font-size: 14px; /* Ajustar el tamaño del texto o icono */
+  width: auto; /* Asegurar que no ocupe demasiado espacio */
+  height: auto; /* Para que se ajuste al contenido */
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+
+.cart-button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  max-width: 600px;
+  margin-top: 120px; /* Ajuste para centrar el formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+form select, form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.budget-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+
+.budget-input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 50%;
+  margin: 10px auto; /* Centra las casillas */
+  font-size: 16px;
+}
+
+
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Estilos para los botones */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.back-step-button {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-step-button:hover {
+  background-color: #cc0000;
+}
+
+.next-step-button {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-step-button:hover {
+  background-color: #003366;
+}
+
+/* Recuadro de recomendación */
+.recommendation-box {
+  background-color: #e9ecef;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.recommendation-box h3 {
+  margin-bottom: 10px;
+  color: #0056b3;
+}
+
+.recommendation-box p {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Resultados de productos */
+.results-section {
+  width: 60%;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto 20px; /* Centra horizontalmente */
+}
+
+.products-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra horizontalmente los productos */
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  max-width: 300px;
+  flex: 0 0 auto;
+}
+
+.product-img {
+  height: 150px;
+  margin-bottom: 15px;
+}
+
+.product-info {
+  margin-top: 10px;
+}
+
+.product-description {
+  font-size: 18px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 22px;
+  color: #0056b3;
+}
+
+.add-to-cart {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #003366;
+  color: #ffcc00;
+}
+
+/* Botones de navegación de productos */
+.nav-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 0 10px;
+}
+
+.nav-button:hover {
+  background-color: #003366;
+}
+
+.show-results-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.show-results-button:hover {
+  background-color: #003366;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.double-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #0056b3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Ajusta el espacio entre botones según sea necesario */
+}
+
+.navbar-button, .user-info, .cart-button, .back-button {
+  margin: 0 5px; /* Ajusta el margen según sea necesario */
+}
+
+.recommendation-box {
+  text-align: center; /* Centra el contenido del contenedor */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.reset-form-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reset-form-button:hover {
+  background-color: #45a049;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.show-results-button,
+.reset-form-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007BFF; /* Azul para "Mostrar Resultados" */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-form-button {
+  background-color: #4CAF50; /* Verde para "Volver a iniciar formulario" */
+}
+
+.show-results-button:hover {
+  background-color: #0056b3;
+}
+
+.reset-form-button:hover {
+  background-color: #45a049;
+}
+

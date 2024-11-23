@@ -1,0 +1,100 @@
+/* Cambiocontra.css */
+
+/* Estilos generales */
+.cambiocontra-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #87CEEB; /* Fondo azul consistente con la barra de navegación */
+  min-height: 100vh;
+  padding-top: 60px; /* Para compensar la barra de navegación fija */
+  box-sizing: border-box;
+}
+
+/* Estilos para el contenido */
+.cambiocontra-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cambiocontra-content h2 {
+  color: #0056b3;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Estilos para el formulario */
+.cambiocontra-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.cambiocontra-content button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px 5px;
+  width: 48%; /* Asegura que los botones sean del mismo tamaño */
+  box-sizing: border-box;
+}
+
+.cambiocontra-content button:hover {
+  background-color: #003366;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Mensaje de confirmación o error */
+.cambiocontra-message {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.cambiocontra-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.cambiocontra-content button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px 5px;
+  width: 48%;
+  box-sizing: border-box;
+}
+
+.cambiocontra-content button:hover {
+  background-color: #003366;
+}
+
+.cambiocontra-message {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
