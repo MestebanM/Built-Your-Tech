@@ -322,11 +322,30 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
         <div className="header-buttons">
           {isAdmin && (
             <>
-              <Link to="/graficas">
-                <button className="navbar-button">
-                  📊 <span>Gráficas</span>
+              <div className="navbar-dropdown">
+                <button
+                  className="navbar-button"
+                  onClick={() => setDropdownVisible((prev) => !prev)}
+                >
+                   <span>Ventas</span>
                 </button>
-              </Link>
+                {dropdownVisible && (
+                  <div className="dropdown-options">
+                    <button
+                      className="dropdown-button"
+                      onClick={() => navigate('/graficas')}
+                    >
+                      Ventas Generales
+                    </button>
+                    <button
+                      className="dropdown-button"
+                      onClick={() => navigate('/graficas2')}
+                    >
+                      Ventas por Fecha
+                    </button>
+                  </div>
+                )}
+              </div>
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
