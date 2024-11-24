@@ -314,7 +314,6 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
   };
 
   return (
-
     <div className="users-page">
           <div className="users-header">
             <button className="logo-button" onClick={() => navigate('/')}>
@@ -359,6 +358,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
                     </button>
                     <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
                   </div>
+
 
     <div className="add-product-page">
       <div className="add-product-header">
@@ -415,6 +415,7 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <button className="dropdown-item" onClick={handleLogout}>
                     Cerrar sesión
                   </button>
+
 
                 </div>
               ) : (

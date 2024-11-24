@@ -333,6 +333,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
                     <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
                   </div>
 
+
       <div className="users-header">
         <button className="logo-button" onClick={() => navigate('/')}>
           <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
@@ -388,6 +389,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
                   <button className="dropdown-item" onClick={handleLogout}>
                     Cerrar sesión
                   </button>
+
 
                 </div>
               ) : (

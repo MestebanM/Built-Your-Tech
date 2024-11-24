@@ -220,6 +220,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
   
               {/* Menú Compras */}
 
+
               <div className="navbar-dropdown">
                 <button
                   className="navbar-button"
@@ -244,6 +245,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                   </div>
                 )}
               </div>
+
 
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>

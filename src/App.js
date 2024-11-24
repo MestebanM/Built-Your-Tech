@@ -18,6 +18,9 @@ import CaraCompra from './CaraCompra';
 import GraficasPage from './graficasPage';
 import GraficasPage2 from './graficasPage2';
 
+import GraficasPage3 from './graficasPage3';
+
+
 
 
 function App() {
@@ -182,7 +185,9 @@ function App() {
                 </button>
 
 
+
                 <span className="user-name"> {user.name}</span>
+
 
               </div>
             ) : (
@@ -250,6 +255,10 @@ function App() {
           <Route
             path="/graficas"
             element={<ProtectedRoute><GraficasPage user={user} onLogoutClick={handleLogout} /></ProtectedRoute>}
+          />
+          <Route
+            path="/graficas3"
+            element={<ProtectedRoute><GraficasPage3 user={user} onLogoutClick={handleLogout} /></ProtectedRoute>}
           />
 
           <Route path="/cambiocontra" element={<Cambiocontra />} />

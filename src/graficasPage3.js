@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Chart, registerables } from 'chart.js';
-import './graficasPage.css';
+import './graficasPage3.css';
 import { CartContext } from './CartContext';
 import Eliminar from './Eliminar';
 
 Chart.register(...registerables);
 
-const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
+const GraficasPage3 = ({ user, onLogoutClick, onLoginClick }) => {
   const [searchId, setSearchId] = useState('');
   const [productInfo, setProductInfo] = useState(null);
   const { getTotalItems } = useContext(CartContext); // Usar CartContext para obtener el total de productos en el carrito
@@ -125,7 +125,6 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
         <div className="header-buttons">
           {isAdmin && (
             <>
-
               {/* Menú Ventas */}
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
@@ -136,34 +135,6 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
               </div>
   
               {/* Menú Compras */}
-
-
-              <div className="navbar-dropdown">
-                <button
-                  className="navbar-button"
-                  onClick={() => setDropdownVisible((prev) => !prev)}
-                >
-                   <span>Ventas</span>
-                </button>
-                {dropdownVisible && (
-                  <div className="dropdown-options">
-                    <button
-                      className="dropdown-button"
-                      onClick={() => navigate('/graficas')}
-                    >
-                      Ventas Generales
-                    </button>
-                    <button
-                      className="dropdown-button"
-                      onClick={() => navigate('/graficas2')}
-                    >
-                      Ventas por Fecha
-                    </button>
-                  </div>
-                )}
-              </div>
-
-
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
@@ -236,4 +207,4 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
   );  
 };
 
-export default GraficasPage;
+export default GraficasPage3;

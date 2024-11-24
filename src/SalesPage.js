@@ -114,6 +114,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
                   <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
                 </div>
 
+
               <div className="navbar-dropdown">
                 <button
                   className="navbar-button"
@@ -137,6 +138,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
                     </button>
                   </div>
                 )}
+
 
               </div>
               <div className="dropdown-container">
