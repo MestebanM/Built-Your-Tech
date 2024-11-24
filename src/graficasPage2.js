@@ -220,3 +220,6 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
 };
 
 export default GraficasPage2;
+
+
+
