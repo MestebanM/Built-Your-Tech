@@ -1,4 +1,3 @@
-// CartPage.js
 import React, { useContext, useState } from 'react';
 import { CartContext } from './CartContext';
 import './CartPage.css';
@@ -50,6 +49,10 @@ const CartPage = ({ user, onLoginClick, onLogoutClick }) => {
     }, 0);
   };
 
+  const totalCost = getTotalCost();
+  const iva = totalCost * 0.19;  // IVA 19%
+  const priceWithoutIva = totalCost - iva;  // Precio sin IVA
+
   return (
     <div className="cart-page">
       <div className="cart-header">
@@ -65,30 +68,44 @@ const CartPage = ({ user, onLoginClick, onLogoutClick }) => {
         ) : (
           <>
             <div className="cart-items">
-              {cartItems.map((item, index) => (
-                <div key={index} className="cart-item">
-                  <div className="cart-item-left">
-                    <img src={item.img} alt={item.description} className="cart-item-img" />
-                    <div className="cart-item-details">
-                      <p className="cart-item-description">{item.description}</p>
-                      <p className="cart-item-price">{formatPrice(item.price)}</p>
+              {cartItems.map((item, index) => {
+                const itemTotalCost = item.price * item.quantity; // Calcular costo total del producto
+                const itemIva = itemTotalCost * 0.19; // IVA 19% para este producto
+                const itemPriceWithoutIva = itemTotalCost - itemIva; // Precio sin IVA para este producto
+
+                return (
+                  <div key={index} className="cart-item">
+                    <div className="cart-item-left">
+                      <img src={item.img} alt={item.description} className="cart-item-img" />
+                      <div className="cart-item-details">
+                        <p className="cart-item-description">{item.description}</p>
+                        <p>Precio sin IVA: {formatPrice(itemPriceWithoutIva)}</p>
+                        <p>IVA (19%): {formatPrice(itemIva)}</p>
+                        <p className="cart-item-price">{formatPrice(item.price)}</p>
+                      </div>
+                    </div>
+                    <div className="cart-item-right">
+                      <div className="quantity-control">
+                        <button onClick={() => updateQuantity(item.id, item.quantity - 1)} disabled={item.quantity <= 1}>-</button>
+                        <span className="quantity-display">{item.quantity}</span>
+                        <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                      </div>
+                      <button className="remove-button" onClick={() => removeFromCart(index)}>
+                        Eliminar
+                      </button>
                     </div>
                   </div>
-                  <div className="cart-item-right">
-                    <div className="quantity-control">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)} disabled={item.quantity <= 1}>-</button>
-                      <span className="quantity-display">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
-                    </div>
-                    <button className="remove-button" onClick={() => removeFromCart(index)}>
-                      Eliminar
-                    </button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-            <div className="cart-summary">
-              <h3>Total: {formatCurrency(getTotalCost())}</h3>
+              {/* Mostrar Precio y IVA en la misma línea */}
+              <div className="cart-summary">
+              <h3><p>Precio: {formatCurrency(priceWithoutIva)} </p>
+                <p>IVA (19%): {formatCurrency(iva)}</p>
+                </h3>
+              </div>
+              <div className="cart-summary">
+              <h3>Total: {formatCurrency(totalCost)}</h3>
               <button className="payment-button" onClick={handlePaymentClick}>Pagar</button>
             </div>
           </>
@@ -97,7 +114,7 @@ const CartPage = ({ user, onLoginClick, onLogoutClick }) => {
       {showPago && (
         <Pago
           onClose={closePago}
-          totalAmount={getTotalCost()}
+          totalAmount={totalCost}
           user={user}
           cartItems={cartItems}
           onPaymentSuccess={onPaymentSuccess}

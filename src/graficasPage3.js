@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Chart, registerables } from 'chart.js';
-import './graficasPage.css';
+import './graficasPage3.css';
 import { CartContext } from './CartContext';
 import Eliminar from './Eliminar';
 
 Chart.register(...registerables);
 
-const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
+const GraficasPage3 = ({ user, onLogoutClick, onLoginClick }) => {
   const [searchId, setSearchId] = useState('');
   const [productInfo, setProductInfo] = useState(null);
   const { getTotalItems } = useContext(CartContext); // Usar CartContext para obtener el total de productos en el carrito
@@ -207,4 +207,4 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
   );  
 };
 
-export default GraficasPage;
+export default GraficasPage3;

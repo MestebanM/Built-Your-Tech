@@ -3,9 +3,10 @@ import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './AddProductPage.css';
 import { CartContext } from './CartContext';
+import Eliminar from './Eliminar';
+
 
 const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [productId, setProductId] = useState('');
   const [productData, setProductData] = useState({
     producto: '',
@@ -27,13 +28,13 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
 
   const navigate = useNavigate();
   const { getTotalItems } = useContext(CartContext);
+  const [showEliminar, setShowEliminar] = useState(false);
 
   const isAdmin = user && user.role === 1;
-
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+  const handleEliminarClose = () => {
+    setShowEliminar(false);
   };
-
+  
 
   const fetchAllProducts = useCallback(async () => {
     try {
@@ -313,56 +314,63 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
   };
 
   return (
-    <div className="add-product-page">
-      <div className="add-product-header">
-        <button className="logo-button" onClick={() => navigate('/')}>
-          <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
-          <span className="navbar-title">BUILD-YOUR-TECH</span>
-        </button>
-        <div className="header-buttons">
-          {isAdmin && (
-            <>
-              <Link to="/graficas">
-                <button className="navbar-button">
-                  📊 <span>Gráficas</span>
-                </button>
-              </Link>
-              <div className="dropdown-container">
-                <button className="navbar-button">Compras</button>
-                <div className="dropdown-content">
-                  <Link to="/compras" className="dropdown-item">Compra</Link>
-                  <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
-                </div>
-              </div>
-              <Link to="/users" className="navbar-button">Usuarios</Link>
-              <Link to="/add-product" className="navbar-button">Productos</Link>
-            </>
-          )}
-          <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
-          {user ? (
-            <div className="user-info">
-              <button className="navbar-button" onClick={toggleDropdown}>
-                {user.name}
-              </button>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Cerrar sesión
-                  </button>
-                </div>
+    <div className="users-page">
+          <div className="users-header">
+            <button className="logo-button" onClick={() => navigate('/')}>
+              <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
+              <span className="navbar-title">BUILD-YOUR-TECH</span>
+            </button>
+      
+            <div className="header-buttons">
+              {isAdmin && (
+                <>
+                  {/* Menú Ventas */}
+                  <div className="dropdown-container">
+                    <button className="navbar-button">Ventas</button>
+                    <div className="dropdown-content">
+                      <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
+                      <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                    </div>
+                  </div>
+      
+                  {/* Menú Compras */}
+                  <div className="dropdown-container">
+                    <button className="navbar-button">Compras</button>
+                    <div className="dropdown-content">
+                      <Link to="/compras" className="dropdown-item">Compra</Link>
+                      <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
+                    </div>
+                  </div>
+      
+                  <Link to="/users" className="navbar-button">Usuarios</Link>
+                  <Link to="/add-product" className="navbar-button">Productos</Link>
+                </>
               )}
+              <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
+      
+              {/* Usuario */}
+              {user ? (
+                <div className="user-info">
+                  <button className="navbar-button">{user.name}</button>
+                  <div className="dropdown-menu">
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Cerrar sesión
+                    </button>
+                    <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
+                  </div>
+                </div>
+              ) : (
+                <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
+              )}
+              <Link to="/cart">
+                <div className="cart-button">
+                  <span role="img" aria-label="cart">&#128722;</span>
+                  <span className="cart-count">{getTotalItems()}</span>
+                </div>
+              </Link>
             </div>
-          ) : (
-            <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
-          )}
-          <Link to="/cart">
-            <div className="cart-button">
-              <span role="img" aria-label="cart">&#128722;</span>
-              <span className="cart-count">{getTotalItems()}</span>
-            </div>
-          </Link>
-        </div>
-      </div>
+          </div>
+          {showEliminar && <Eliminar onClose={handleEliminarClose} />}
 
       <div className="add-product-content">
         <h2>Gestión de Productos</h2>
