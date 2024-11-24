@@ -3,17 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Chart, registerables } from 'chart.js';
 import './graficasPage.css';
 import { CartContext } from './CartContext';
+import Eliminar from './Eliminar';
 
 Chart.register(...registerables);
 
 const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [searchId, setSearchId] = useState('');
   const [productInfo, setProductInfo] = useState(null);
   const { getTotalItems } = useContext(CartContext); // Usar CartContext para obtener el total de productos en el carrito
   const navigate = useNavigate();
   const isAdmin = user && user.role === 1;
   const chartRef = useRef(null); // Usar useRef para la instancia de Chart
+  const [showEliminar, setShowEliminar] = useState(false);
+
 
   useEffect(() => {
     // Obtener los productos más vendidos desde el backend
@@ -76,6 +78,11 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
   }, []);
   
 
+  const handleEliminarClose = () => {
+    setShowEliminar(false);
+  };
+  
+
   const handleSearch = () => {
     if (searchId.trim() === '') return;
   
@@ -114,13 +121,20 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
           <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
           <span className="navbar-title">BUILD-YOUR-TECH</span>
         </button>
-
+  
         <div className="header-buttons">
           {isAdmin && (
             <>
-              <Link to="/graficas">
-                <button className="navbar-button">📊 <span>Gráficas</span></button>
-              </Link>
+              {/* Menú Ventas */}
+              <div className="dropdown-container">
+                <button className="navbar-button">Ventas</button>
+                <div className="dropdown-content">
+                  <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
+                  <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                </div>
+              </div>
+  
+              {/* Menú Compras */}
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
@@ -128,6 +142,7 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
                 </div>
               </div>
+  
               <Link to="/users" className="navbar-button">Usuarios</Link>
               <Link to="/add-product" className="navbar-button">Productos</Link>
             </>
@@ -135,17 +150,14 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
           <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
           {user ? (
             <div className="user-info">
-              <button className="navbar-button user-name" onClick={() => setDropdownVisible(!dropdownVisible)}>
-                {user.name}
-              </button>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <button className="dropdown-item" onClick={onLogoutClick}>Cerrar sesión</button>
-                </div>
-              )}
+              <button className="navbar-button user-name">{user.name}</button>
+              <div className="dropdown-menu">
+                <button className="dropdown-item" onClick={onLogoutClick}>Cerrar sesión</button>
+                <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
+              </div>
             </div>
           ) : (
-            <button className="navbar-button" onClick={onLoginClick}>
+            <button className="navbar-button">
               <span className="user-icon">&#128100;</span> INICIAR SESIÓN
             </button>
           )}
@@ -157,6 +169,9 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
           </Link>
         </div>
       </div>
+  
+      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+
 
       <div className="content">
         <div className="search-section">
@@ -183,13 +198,13 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
             <input type="text" value={productInfo ? `$${productInfo.total}` : ''} disabled />
           </div>
         </div>
-
+  
         <div className="chart-section">
           <canvas id="salesChart"></canvas>
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default GraficasPage;

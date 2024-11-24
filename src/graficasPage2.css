@@ -1,0 +1,233 @@
+/* Estilo general de la página */
+.graficas-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    padding-top: 2000px; /* Espacio para la barra superior */
+}
+
+/* Barra superior */
+.graficas-header {
+    background-color: #0056b3;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+.navbar-logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-button {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #003d82;
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+    background-color: #003d82;
+}
+
+/* Submenú para botón "Gráfica" */
+.navbar-dropdown {
+    position: relative;
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.dropdown-button {
+    padding: 10px;
+    background-color: white;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-button:hover {
+    background-color: #f4f4f9;
+}
+
+/* Filtros */
+.filters-section {
+    margin-bottom: 90px; /* Añadir más margen inferior */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+}
+
+.filters-section input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+.filters-section .search-button {
+    padding: 8px 12px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.filters-section .search-button:hover {
+    background-color: #003d82;
+}
+
+/* Tabla */
+.table-section {
+    margin: 100px auto 50px; /* Añadir margen arriba y abajo */
+    width: 90%; /* Tamaño fijo */
+    max-width: 1200px;
+    height: 200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.table-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-wrapper th, .table-wrapper td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table-wrapper th {
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+}
+
+.table-wrapper tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-wrapper tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Gráfica */
+/* Gráfica */
+.chart-section {
+    margin-top: 60px; /* Agregar más espacio arriba del gráfico */
+    margin: 20px auto;
+    width: calc(100% - 20px); /* Más ancho, ocupa casi todo el espacio horizontal */
+    max-width: 1300px; /* Aumenta el ancho máximo para pantallas grandes */
+    height: 300px; /* Altura fija */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chart-section h2 {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%; /* Ajusta la gráfica al contenedor */
+    height: 100%;
+}
+
+
+/* Scrollbar personalizado */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f4f4f9;
+    border-radius: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #0056b3;
+    border-radius: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #003d82;
+}

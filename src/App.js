@@ -16,6 +16,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Compra from './Compra';
 import CaraCompra from './CaraCompra';
 import GraficasPage from './graficasPage';
+import GraficasPage2 from './graficasPage2';
+
 
 
 function App() {
@@ -178,20 +180,6 @@ function App() {
                 <button className="logout-icon-button" onClick={handleLogout}>
                   <FaSignOutAlt size={24} />
                 </button>
-                <span className="user-name"> {user.name}</span>
-                {user.email.endsWith('@upc.edu.co') && (
-                  <>
-                    <Link to="/add-product">
-                      <button className="admin-button">Administrador</button>
-                    </Link>
-                    <Link to="/users">
-                      <button className="admin-button">Usuarios</button>
-                    </Link>
-                    <Link to="/compras">
-                      <button className="admin-button">Compras</button>
-                    </Link>
-                  </>
-                )}
               </div>
             ) : (
               <button className="login-button" onClick={handleLoginClick}>
@@ -212,6 +200,18 @@ function App() {
                 onLogoutClick={handleLogout}
                 onRegisterClick={() => setShowRegisterModal(true)} // Modal completo para registro
               />
+            }
+          />
+          <Route
+            path="/graficas2"
+            element={
+              <ProtectedRoute>
+                <GraficasPage2
+                  user={user}
+                  onLogoutClick={handleLogout}
+                  onLoginClick={handleLoginClick}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
