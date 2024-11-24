@@ -7,7 +7,11 @@
     min-height: 100vh;
     background-color: #f4f4f9;
     font-family: 'Arial', sans-serif;
+
     padding-top: 2000px; /* Espacio para la barra superior */
+
+    padding-top: 100px; /* Espacio para la barra superior */
+
 }
 
 /* Barra superior */
@@ -108,7 +112,11 @@
 
 /* Filtros */
 .filters-section {
+
     margin-bottom: 90px; /* Añadir más margen inferior */
+
+    margin-bottom: 20px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,10 +149,16 @@
 
 /* Tabla */
 .table-section {
+
     margin: 100px auto 50px; /* Añadir margen arriba y abajo */
     width: 90%; /* Tamaño fijo */
     max-width: 1200px;
     height: 200px;
+
+    margin: 20px auto;
+    width: 90%; /* Tamaño fijo */
+    max-width: 1200px;
+
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -183,6 +197,7 @@
 }
 
 /* Gráfica */
+
 /* Gráfica */
 .chart-section {
     margin-top: 60px; /* Agregar más espacio arriba del gráfico */
@@ -190,6 +205,13 @@
     width: calc(100% - 20px); /* Más ancho, ocupa casi todo el espacio horizontal */
     max-width: 1300px; /* Aumenta el ancho máximo para pantallas grandes */
     height: 300px; /* Altura fija */
+
+.chart-section {
+    margin: 20px auto;
+    width: calc(100% - 20px); /* Más ancho, ocupa casi todo el espacio horizontal */
+    max-width: 1600px; /* Aumenta el ancho máximo para pantallas grandes */
+    height: 400px; /* Altura fija */
+
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -211,6 +233,8 @@ canvas {
     width: 100%; /* Ajusta la gráfica al contenedor */
     height: 100%;
 }
+
+
 
 
 /* Scrollbar personalizado */
