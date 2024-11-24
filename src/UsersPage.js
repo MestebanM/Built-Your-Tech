@@ -3,9 +3,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './UsersPage.css';
 import { CartContext } from './CartContext';
+import Eliminar from './Eliminar';
+
 
 const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [userId, setUserId] = useState('');
   const [userData, setUserData] = useState({
     nombre: '',
@@ -19,15 +20,16 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [isIdSearched, setIsIdSearched] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-
+  const [showEliminar, setShowEliminar] = useState(false);
   const navigate = useNavigate();
   const { getTotalItems } = useContext(CartContext);
 
   const isAdmin = user && user.role === 1;
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+  const handleEliminarClose = () => {
+    setShowEliminar(false);
   };
+  
 
   const fetchAllUsers = async () => {
     try {
@@ -156,11 +158,6 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
     }
   };
 
-  const handleLogout = () => {
-    onLogoutClick();
-    navigate('/');
-  };
-
   const handleConfirm = () => {
     setShowConfirmationModal(true);
   };
@@ -207,10 +204,22 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
           <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
           <span className="navbar-title">BUILD-YOUR-TECH</span>
         </button>
-
+  
         <div className="header-buttons">
           {isAdmin && (
             <>
+
+              {/* Menú Ventas adaptado */}
+              <div className="dropdown-container">
+                <button className="navbar-button">Ventas</button>
+                <div className="dropdown-content">
+                  <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
+                  <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                </div>
+              </div>
+  
+              {/* Menú Compras */}
+
               <div className="navbar-dropdown">
                 <button
                   className="navbar-button"
@@ -235,6 +244,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                   </div>
                 )}
               </div>
+
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
@@ -242,6 +252,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
                 </div>
               </div>
+  
               <Link to="/users" className="navbar-button">Usuarios</Link>
               <Link to="/add-product" className="navbar-button">Productos</Link>
             </>
@@ -249,33 +260,32 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
           <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
           {user ? (
             <div className="user-info">
-              <button className="navbar-button" onClick={toggleDropdown}>
-                {user.name}
-              </button>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Cerrar sesión
-                  </button>
-                </div>
-              )}
+              <button className="navbar-button">{user.name}</button>
+              <div className="dropdown-menu">
+              <button className="dropdown-item" onClick={onLogoutClick}>Cerrar sesión</button>
+                <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
+              </div>
             </div>
           ) : (
-            <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
+            <button className="navbar-button">
+              <span className="user-icon">&#128100;</span> INICIAR SESIÓN
+            </button>
           )}
           <Link to="/cart">
             <div className="cart-button">
               <span role="img" aria-label="cart">&#128722;</span>
-              <span className="cart-count">{getTotalItems()}</span>
+              {getTotalItems() > 0 && <span className="cart-count">{getTotalItems()}</span>}
             </div>
           </Link>
         </div>
       </div>
-
+  
+      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+  
       <div className="users-content-container">
         <div className="users-content-left">
           <h2>Gestión de Usuarios</h2>
-
+  
           <div className="search-section">
             <div className="search-input-container">
               <input
@@ -284,8 +294,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 value={userId}
                 onChange={(e) => {
                   const id = e.target.value;
-
-                  // Permitir solo números
+  
                   if (/^\d*$/.test(id)) {
                     setUserId(id);
                     setShowConfirmButtons(false);
@@ -297,8 +306,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                       rol: '',
                     });
                     setIsIdSearched(false);
-
-                    // Deshabilitar acciones si el campo está vacío
+  
                     if (id.trim() === '') {
                       setIsIdSearched(false);
                     }
@@ -306,38 +314,34 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 }}
                 className="search-input"
               />
-              <button onClick={handleSearch} className="search-button">
-                🔍
-              </button>
+              <button onClick={handleSearch} className="search-button">🔍</button>
             </div>
           </div>
-
-
+  
           <div className="action-buttons">
             <button
               className="action-button"
               onClick={handleCreate}
-              disabled={isIdSearched} // Botón Crear habilitado si no se ha buscado un ID
+              disabled={isIdSearched}
             >
               Crear
             </button>
             <button
               className="action-button"
               onClick={handleEdit}
-              disabled={!isIdSearched} // Botón Editar habilitado solo si hay un ID buscado
+              disabled={!isIdSearched}
             >
               Editar
             </button>
             <button
               className="action-button"
               onClick={handleDelete}
-              disabled={!isIdSearched} // Botón Eliminar habilitado solo si hay un ID buscado
+              disabled={!isIdSearched}
             >
               Eliminar
             </button>
           </div>
-
-
+  
           <div className="user-details">
             <div className="user-field">
               <label>Nombre:</label>
@@ -349,7 +353,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-
+  
             <div className="user-field">
               <label>Correo:</label>
               <input
@@ -360,7 +364,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-
+  
             <div className="user-field">
               <label>Contraseña:</label>
               <input
@@ -371,7 +375,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-
+  
             <div className="user-field">
               <label>Rol:</label>
               <input
@@ -383,14 +387,14 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
               />
             </div>
           </div>
-
+  
           {showConfirmButtons && (
             <div className="confirm-buttons">
               <button className="cancel-button" onClick={handleCancel}>Cancelar</button>
               <button className="confirm-button" onClick={handleConfirm}>Confirmar</button>
             </div>
           )}
-
+  
           {showConfirmationModal && (
             <div className="confirmation-modal">
               <p>{confirmationMessage}</p>
@@ -399,7 +403,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
             </div>
           )}
         </div>
-
+  
         <div className="users-content-right">
           <h2>Todos los Usuarios</h2>
           <div className="user-table-container">
@@ -435,7 +439,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default UsersPage;

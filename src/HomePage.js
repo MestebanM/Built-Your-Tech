@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Eliminar from './Eliminar';
+
 
 function HomePage({ onLoginClick, user, onLogoutClick, onRegisterClick }) {
   const navigate = useNavigate();
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [showEliminar, setShowEliminar] = useState(false);
+
+  const handleEliminarClose = () => {
+    setShowEliminar(false);
+  };
+  
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -53,8 +61,10 @@ function HomePage({ onLoginClick, user, onLogoutClick, onRegisterClick }) {
                   <button className="dropdown-item" onClick={onLogoutClick}>
                     Cerrar sesión
                   </button>
+                  <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
                 </div>
               )}
+              {showEliminar && <Eliminar onClose={handleEliminarClose} />}
             </div>
           ) : (
             <>

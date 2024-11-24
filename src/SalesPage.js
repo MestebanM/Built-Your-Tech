@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './App.css';
+import './Eliminar.css'; // Importa el CSS del componente Eliminar
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from './CartContext';
-import Calificacion from './Calificacion'; // Importamos el componente del modal
+import Calificacion from './Calificacion'; // Componente de calificación
+import Eliminar from './Eliminar'; // Importa el componente de eliminación
 
 function SalesPage({ onLoginClick, user, onLogoutClick }) {
   const { addToCart, getTotalItems } = useContext(CartContext);
@@ -10,9 +12,9 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [products, setProducts] = useState([]);
   const [dropdownPurchasesVisible, setDropdownPurchasesVisible] = useState(false); // Para el menú de Compras
-
   const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
-  const [selectedProduct, setSelectedProduct] = useState(null); // Estado para almacenar el producto seleccionado
+  const [selectedProduct, setSelectedProduct] = useState(null); // Producto seleccionado
+  const [showEliminar, setShowEliminar] = useState(false); // Estado para controlar el modal de eliminación
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -39,8 +41,6 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         return response.json();
       })
       .then(data => {
-
-
         const normalizedProducts = data.slice(0, 69).map(product => ({
           id: product.id || "Sin ID",
           nombre: product.description || "Producto sin nombre",
@@ -50,17 +50,14 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
           grafica: product.info?.grafica || "No especificado",
           imagen: product.img || "url_de_imagen_por_defecto.jpg",
           precio: product.price
-            ? parseFloat(product.price.replace(/[^0-9.]/g, '')) // Limpia caracteres no numéricos
-            : 0, // Asigna 0 si no hay precio válido
+            ? parseFloat(product.price.replace(/[^0-9.]/g, ''))
+            : 0,
           descripcion: product.description || "Sin descripción",
         }));
-
-
         setProducts(normalizedProducts);
       })
       .catch(error => console.error("Error fetching products:", error));
   }, []);
-
 
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('es-CO', {
@@ -85,16 +82,18 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
     }
   };
 
-
   const handleProductClick = (product) => {
-    // Muestra el modal con los detalles del producto
     setSelectedProduct(product);
     setShowModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setSelectedProduct(null); // Limpiar el producto seleccionado
+    setSelectedProduct(null);
+  };
+
+  const handleEliminarClose = () => {
+    setShowEliminar(false);
   };
 
   return (
@@ -107,6 +106,14 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         <div className="header-buttons">
           {isAdmin && (
             <>
+
+              <div className="dropdown-container">
+                <button className="navbar-button">Ventas</button>
+                <div className="dropdown-content">
+                  <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
+                  <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                </div>
+
               <div className="navbar-dropdown">
                 <button
                   className="navbar-button"
@@ -130,6 +137,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
                     </button>
                   </div>
                 )}
+
               </div>
               <div className="dropdown-container">
                 <button
@@ -149,12 +157,10 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
               <Link to="/add-product" className="navbar-button">Productos</Link>
             </>
           )}
-
           <button className="navbar-button" onClick={handleIaClick}>
             <img src="/IAlogo.png" alt="Asesoría IA" className="ia-icon-navbar" />
             <span>Asesoría IA</span>
           </button>
-
           {user ? (
             <div className="user-info">
               <button className="navbar-button user-name" onClick={toggleDropdown}>
@@ -165,6 +171,12 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
                   <button className="dropdown-item" onClick={onLogoutClick}>
                     Cerrar sesión
                   </button>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setShowEliminar(true)}
+                  >
+                    Eliminar cuenta
+                  </button>
                 </div>
               )}
             </div>
@@ -173,7 +185,6 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
               <span className="user-icon">&#128100;</span> INICIAR SESIÓN
             </button>
           )}
-
           <Link to="/cart">
             <div className="cart-button">
               <span role="img" aria-label="cart">&#128722;</span>
@@ -183,15 +194,12 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
             </div>
           </Link>
         </div>
-
       </header>
 
       <div className="hero">
         <img src="/BYT.jpg" alt="Logo" className="logo" />
         <div className="combined-content">
-          <p className="slogan">
-            Computadores a tu medida guiado por innovación
-          </p>
+          <p className="slogan">Computadores a tu medida guiado por innovación</p>
           <p className="intro-message">
             ¿BUSCAS UNA COMPUTADORA QUE SE AJUSTE A TUS NECESIDADES? Nuestra IA analizará tus requerimientos para ofrecerte recomendaciones personalizadas. Con BUILD-YOUR-TECH, recibirás asesoría para elegir el equipo ideal, maximizando el valor de tu inversión y ajustándose a tus actividades y presupuesto. ¡Descubre nuestros productos y encuentra lo que realmente necesitas!
           </p>
@@ -209,19 +217,17 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
       <div className="products-grid">
         {products.map((product) => (
           <div
-            key={product.id} // Usa la clave que exista en tu data: id
+            key={product.id}
             className="product-card"
-            onClick={() => handleProductClick(product)} // Abre el modal al hacer clic en cualquier parte del producto
-            style={{ cursor: 'pointer' }} // Cambia el cursor para indicar que es clickeable
+            onClick={() => handleProductClick(product)}
+            style={{ cursor: 'pointer' }}
           >
-            {/* Imagen del producto */}
             <img
               src={product.imagen || "url_de_imagen_por_defecto.jpg"}
               alt={product.nombre || "Sin nombre"}
               className="product-img"
             />
             <div className="product-info">
-              {/* Nombre del producto */}
               <p className="product-description">{product.nombre || "Producto sin nombre"}</p>
               <p className="product-price">
                 {product.precio && !isNaN(product.precio)
@@ -237,7 +243,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
               <button
                 className="add-to-cart"
                 onClick={(e) => {
-                  e.stopPropagation(); // Evita que el evento `onClick` del contenedor también se dispare
+                  e.stopPropagation();
                   handleAddToCart(product);
                 }}
               >
@@ -248,14 +254,15 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         ))}
       </div>
 
-      {/* Modal de calificación */}
       {showModal && (
         <Calificacion
           product={selectedProduct}
           closeModal={closeModal}
-          user={user} // Pasamos el usuario autenticado como prop
+          user={user}
         />
       )}
+
+      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
 
       <footer className="footer">
         <div className="footer-section">
