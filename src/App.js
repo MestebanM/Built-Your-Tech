@@ -17,7 +17,9 @@ import Compra from './Compra';
 import CaraCompra from './CaraCompra';
 import GraficasPage from './graficasPage';
 import GraficasPage2 from './graficasPage2';
+
 import GraficasPage3 from './graficasPage3';
+
 
 
 
@@ -181,6 +183,12 @@ function App() {
                 <button className="logout-icon-button" onClick={handleLogout}>
                   <FaSignOutAlt size={24} />
                 </button>
+
+
+
+                <span className="user-name"> {user.name}</span>
+
+
               </div>
             ) : (
               <button className="login-button" onClick={handleLoginClick}>

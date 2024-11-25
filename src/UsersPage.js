@@ -208,6 +208,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
         <div className="header-buttons">
           {isAdmin && (
             <>
+
               {/* Menú Ventas adaptado */}
               <Link to="/users" className="navbar-button">Usuarios</Link>
               <div className="dropdown-container">
@@ -219,6 +220,34 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
               </div>
 
               {/* Menú Compras */}
+
+
+              <div className="navbar-dropdown">
+                <button
+                  className="navbar-button"
+                  onClick={() => setDropdownVisible((prev) => !prev)}
+                >
+                   <span>Ventas</span>
+                </button>
+                {dropdownVisible && (
+                  <div className="dropdown-options">
+                    <button
+                      className="dropdown-button"
+                      onClick={() => navigate('/graficas')}
+                    >
+                      Ventas Generales
+                    </button>
+                    <button
+                      className="dropdown-button"
+                      onClick={() => navigate('/graficas2')}
+                    >
+                      Ventas por Fecha
+                    </button>
+                  </div>
+                )}
+              </div>
+
+
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
