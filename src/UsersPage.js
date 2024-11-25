@@ -29,7 +29,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
   const handleEliminarClose = () => {
     setShowEliminar(false);
   };
-  
+
 
   const fetchAllUsers = async () => {
     try {
@@ -204,11 +204,12 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
           <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
           <span className="navbar-title">BUILD-YOUR-TECH</span>
         </button>
-  
+
         <div className="header-buttons">
           {isAdmin && (
             <>
               {/* Menú Ventas adaptado */}
+              <Link to="/users" className="navbar-button">Profe</Link>
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">
@@ -216,7 +217,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
                 </div>
               </div>
-  
+
               {/* Menú Compras */}
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
@@ -225,7 +226,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
                 </div>
               </div>
-  
+
               <Link to="/users" className="navbar-button">Usuarios</Link>
               <Link to="/add-product" className="navbar-button">Productos</Link>
             </>
@@ -235,7 +236,7 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
             <div className="user-info">
               <button className="navbar-button">{user.name}</button>
               <div className="dropdown-menu">
-              <button className="dropdown-item" onClick={onLogoutClick}>Cerrar sesión</button>
+                <button className="dropdown-item" onClick={onLogoutClick}>Cerrar sesión</button>
                 <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
               </div>
             </div>
@@ -252,13 +253,13 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
           </Link>
         </div>
       </div>
-  
-      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
-  
+
+      {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
+
       <div className="users-content-container">
-        <div className="users-content-left">
+        <div className="users-content-top">
           <h2>Gestión de Usuarios</h2>
-  
           <div className="search-section">
             <div className="search-input-container">
               <input
@@ -267,7 +268,6 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 value={userId}
                 onChange={(e) => {
                   const id = e.target.value;
-  
                   if (/^\d*$/.test(id)) {
                     setUserId(id);
                     setShowConfirmButtons(false);
@@ -275,11 +275,8 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                     setUserData({
                       nombre: '',
                       correo: '',
-                      contraseña: '',
-                      rol: '',
                     });
                     setIsIdSearched(false);
-  
                     if (id.trim() === '') {
                       setIsIdSearched(false);
                     }
@@ -290,31 +287,11 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
               <button onClick={handleSearch} className="search-button">🔍</button>
             </div>
           </div>
-  
           <div className="action-buttons">
-            <button
-              className="action-button"
-              onClick={handleCreate}
-              disabled={isIdSearched}
-            >
-              Crear
-            </button>
-            <button
-              className="action-button"
-              onClick={handleEdit}
-              disabled={!isIdSearched}
-            >
-              Editar
-            </button>
-            <button
-              className="action-button"
-              onClick={handleDelete}
-              disabled={!isIdSearched}
-            >
-              Eliminar
-            </button>
+            <button className="action-button" onClick={handleCreate} disabled={isIdSearched}>Crear</button>
+            <button className="action-button" onClick={handleEdit} disabled={!isIdSearched}>Editar</button>
+            <button className="action-button" onClick={handleDelete} disabled={!isIdSearched}>Eliminar</button>
           </div>
-  
           <div className="user-details">
             <div className="user-field">
               <label>Nombre:</label>
@@ -326,7 +303,6 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-  
             <div className="user-field">
               <label>Correo:</label>
               <input
@@ -337,37 +313,13 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-  
-            <div className="user-field">
-              <label>Contraseña:</label>
-              <input
-                type="text"
-                value={userData.contraseña}
-                onChange={(e) => setUserData({ ...userData, contraseña: e.target.value })}
-                readOnly={!isEditable}
-                className="user-input"
-              />
-            </div>
-  
-            <div className="user-field">
-              <label>Rol:</label>
-              <input
-                type="text"
-                value={userData.rol}
-                onChange={(e) => setUserData({ ...userData, rol: e.target.value })}
-                readOnly={!isEditable}
-                className="user-input"
-              />
-            </div>
           </div>
-  
           {showConfirmButtons && (
             <div className="confirm-buttons">
               <button className="cancel-button" onClick={handleCancel}>Cancelar</button>
               <button className="confirm-button" onClick={handleConfirm}>Confirmar</button>
             </div>
           )}
-  
           {showConfirmationModal && (
             <div className="confirmation-modal">
               <p>{confirmationMessage}</p>
@@ -376,29 +328,23 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
             </div>
           )}
         </div>
-  
-        <div className="users-content-right">
+
+        <div className="users-content-bottom">
           <h2>Todos los Usuarios</h2>
           <div className="user-table-container">
             <table className="user-table">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Nombre</th>
                   <th>Correo</th>
-                  <th>Contraseña</th>
-                  <th>Rol</th>
                 </tr>
               </thead>
               <tbody>
                 {allUsers.length > 0 ? (
                   allUsers.map((user) => (
                     <tr key={user.id}>
-                      <td>{user.id}</td>
                       <td>{user.nombre}</td>
                       <td>{user.correo}</td>
-                      <td>{user.contraseña}</td>
-                      <td>{user.rol}</td>
                     </tr>
                   ))
                 ) : (
@@ -411,8 +357,9 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
           </div>
         </div>
       </div>
+
     </div>
-  );  
+  );
 };
 
 export default UsersPage;

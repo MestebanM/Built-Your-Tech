@@ -185,11 +185,10 @@
 /* Gráfica */
 /* Gráfica */
 .chart-section2 {
-    margin-top: 60px; /* Agregar más espacio arriba del gráfico */
     margin: 20px auto;
-    width: calc(100% - 20px); /* Más ancho, ocupa casi todo el espacio horizontal */
-    max-width: 1400px; /* Aumenta el ancho máximo para pantallas grandes */
-    height: 300px; /* Altura fija */
+    width: calc(100% - 300px); /* Limita el tamaño a 150px desde cada lado */
+    max-width: 1400px;
+    height: 300px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -199,6 +198,20 @@
     align-items: center;
     position: relative;
 }
+
+.date-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .date-label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
 
 .chart-section h2 {
     position: absolute;

@@ -6,7 +6,7 @@ import { CartContext } from './CartContext';
 import Eliminar from './Eliminar';
 
 
-const Compra = ({ user, onLogoutClick, onLoginClick }) => { 
+const Compra = ({ user, onLogoutClick, onLoginClick }) => {
   const [idCompra, setIdCompra] = useState('');
   const [compraData, setCompraData] = useState({
     id_usuario: '',
@@ -36,7 +36,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
   const handleEliminarClose = () => {
     setShowEliminar(false);
   };
-  
+
 
   const fetchAllCompras = async () => {
     try {
@@ -288,66 +288,68 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
   };
   return (
     <div className="users-page">
-          <div className="users-header">
-            <button className="logo-button" onClick={() => navigate('/')}>
-              <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
-              <span className="navbar-title">BUILD-YOUR-TECH</span>
-            </button>
-      
-            <div className="header-buttons">
-              {isAdmin && (
-                <>
-                  {/* Menú Ventas */}
-                  <div className="dropdown-container">
-                    <button className="navbar-button">Ventas</button>
-                    <div className="dropdown-content">
-                      <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
-                      <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
-                    </div>
-                  </div>
-      
-                  {/* Menú Compras */}
-                  <div className="dropdown-container">
-                    <button className="navbar-button">Compras</button>
-                    <div className="dropdown-content">
-                      <Link to="/compras" className="dropdown-item">Compra</Link>
-                      <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
-                    </div>
-                  </div>
-      
-                  <Link to="/users" className="navbar-button">Usuarios</Link>
-                  <Link to="/add-product" className="navbar-button">Productos</Link>
-                </>
-              )}
-              <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
-      
-              {/* Usuario */}
-              {user ? (
-                <div className="user-info">
-                  <button className="navbar-button">{user.name}</button>
-                  <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={handleLogout}>
-                      Cerrar sesión
-                    </button>
-                    <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
-                  </div>
-                </div>
-              ) : (
-                <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
-              )}
-              <Link to="/cart">
-                <div className="cart-button">
-                  <span role="img" aria-label="cart">&#128722;</span>
-                  <span className="cart-count">{getTotalItems()}</span>
-                </div>
-              </Link>
-            </div>
-          </div>
+      <div className="users-header">
+        <button className="logo-button" onClick={() => navigate('/')}>
+          <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
+          <span className="navbar-title">BUILD-YOUR-TECH</span>
+        </button>
 
-          {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+        <div className="header-buttons">
+          {isAdmin && (
+            <>
+              {/* Menú Ventas */}
+              <Link to="/users" className="navbar-button">Profe</Link>
+              <div className="dropdown-container">
+                <button className="navbar-button">Ventas</button>
+                <div className="dropdown-content">
+                  <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
+                  <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                </div>
+              </div>
+
+              {/* Menú Compras */}
+              <div className="dropdown-container">
+                <button className="navbar-button">Compras</button>
+                <div className="dropdown-content">
+                  <Link to="/compras" className="dropdown-item">Compra</Link>
+                  <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
+                </div>
+              </div>
+
+              <Link to="/users" className="navbar-button">Usuarios</Link>
+              <Link to="/add-product" className="navbar-button">Productos</Link>
+            </>
+          )}
+          <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
+
+          {/* Usuario */}
+          {user ? (
+            <div className="user-info">
+              <button className="navbar-button">{user.name}</button>
+              <div className="dropdown-menu">
+                <button className="dropdown-item" onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+                <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
+              </div>
+            </div>
+          ) : (
+            <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
+          )}
+          <Link to="/cart">
+            <div className="cart-button">
+              <span role="img" aria-label="cart">&#128722;</span>
+              <span className="cart-count">{getTotalItems()}</span>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
 
       <div className="users-content-container">
-        <div className="users-content-left">
+        <div className="users-content-top">
           <h2>Gestión de Compras</h2>
 
           <div className="search-section">
@@ -391,7 +393,6 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
             </div>
           </div>
 
-
           <div className="action-buttons">
             <button
               className="action-button"
@@ -415,7 +416,6 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
               Eliminar
             </button>
           </div>
-
 
           <div className="user-details">
             <div className="user-field">
@@ -461,34 +461,18 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-
-            <div className="user-field">
-              <label>Dirección:</label>
-              <input
-                type="text"
-                value={compraData.direccion || ''}
-                onChange={(e) => setCompraData({ ...compraData, direccion: e.target.value })}
-                readOnly={!isEditable}
-                className="user-input"
-              />
-            </div>
-
-            <div className="user-field">
-              <label>Teléfono:</label>
-              <input
-                type="text"
-                value={compraData.telefono || ''}
-                onChange={(e) => setCompraData({ ...compraData, telefono: e.target.value })}
-                readOnly={!isEditable}
-                className="user-input"
-              />
-            </div>
           </div>
 
           {showConfirmButtons && (
             <div className="confirm-buttons">
-              <button className="cancel-button" onClick={handleCancel}>Cancelar</button>
-              <button className="confirm-button" onClick={handleConfirm}>Confirmar</button>
+              <button className="cancel-button" onClick={() => {
+                handleCancel();
+                setShowConfirmButtons(false);
+              }}>Cancelar</button>
+              <button className="confirm-button" onClick={() => {
+                handleConfirm();
+                setShowConfirmButtons(false);
+              }}>Confirmar</button>
             </div>
           )}
 
@@ -501,7 +485,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
           )}
         </div>
 
-        <div className="users-content-right">
+        <div className="users-content-bottom">
           <h2>Todos las Compras</h2>
           <div className="user-table-container">
             <table className="user-table">
@@ -512,8 +496,6 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
                   <th>FECHA COMPRA</th>
                   <th>TOTAL</th>
                   <th>TIPO PAGO</th>
-                  <th>DIRECCION</th>
-                  <th>TELEFONO</th>
                 </tr>
               </thead>
               <tbody>
@@ -525,13 +507,11 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
                       <td>{compra.FECHA_COMPRA}</td>
                       <td>{compra.TOTAL}</td>
                       <td>{compra.TIPO_PAGO}</td>
-                      <td>{compra.DIRECCION}</td>
-                      <td>{compra.TELEFONO}</td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="7">No hay compras disponibles</td>
+                    <td colSpan="5">No hay compras disponibles</td>
                   </tr>
                 )}
               </tbody>

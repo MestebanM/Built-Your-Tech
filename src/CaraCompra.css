@@ -41,17 +41,49 @@
   
   .users-content-container {
     display: flex;
-    justify-content: center;
-    gap: 50px;
-    padding: 20px;
-    align-items: flex-start;
-    margin-top: 100px;
-    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Espaciado entre los recuadros */
+    margin-top: 120px;
+    width: 100%;
   }
+  
+  .users-content-top,
+  .users-content-bottom {
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-details {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+  }
+  
+  .user-field label {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+  }
+  
+  .user-input {
+    padding: 12px; /* Aumenta el padding para que se vean más grandes */
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Bordes más suaves */
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    background-color: #f9f9f9;
+    font-size: 16px; /* Ajusta el tamaño del texto */
+}
+
+  
   
   /* Alineación del formulario y ajuste de tamaños para campos */
   .users-content-left {
-    width: 40%;
+    width: 80%;
     background-color: white;
     padding: 20px;
     margin-left: 0;
@@ -75,11 +107,11 @@
   
   .user-input {
     padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 100%; /* Ocupa todo el ancho disponible */
-    background-color: #f9f9f9;
-    font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  background-color: #f9f9f9;
+  font-size: 14px;
   }
   
   /* Ajuste para el tamaño del input */
