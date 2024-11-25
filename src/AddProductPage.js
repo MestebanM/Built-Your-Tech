@@ -325,7 +325,6 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
               {isAdmin && (
                 <>
                   {/* Menú Ventas */}
-                  <Link to="/users" className="navbar-button">Profe</Link>
                   <div className="dropdown-container">
                     <button className="navbar-button">Ventas</button>
                     <div className="dropdown-content">
