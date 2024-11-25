@@ -107,6 +107,8 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
           {isAdmin && (
             <>
 
+            <Link to="/users" className="navbar-button">Profe</Link>
+
             <Link to="/users" className="navbar-button">Usuarios</Link>
 
               <div className="dropdown-container">
