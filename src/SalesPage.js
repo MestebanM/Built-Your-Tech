@@ -279,3 +279,4 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
 }
 
 export default SalesPage;
+
