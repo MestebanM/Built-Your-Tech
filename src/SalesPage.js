@@ -106,7 +106,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         <div className="header-buttons">
           {isAdmin && (
             <>
-            
+
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">
