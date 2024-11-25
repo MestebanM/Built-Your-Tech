@@ -106,13 +106,44 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         <div className="header-buttons">
           {isAdmin && (
             <>
+
             <Link to="/users" className="navbar-button">Profe</Link>
+
+            <Link to="/users" className="navbar-button">Usuarios</Link>
+
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">
                   <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
                   <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
                 </div>
+
+
+              <div className="navbar-dropdown">
+                <button
+                  className="navbar-button"
+                  onClick={() => setDropdownVisible((prev) => !prev)}
+                >
+                   <span>Ventas</span>
+                </button>
+                {dropdownVisible && (
+                  <div className="dropdown-options">
+                    <button
+                      className="dropdown-button"
+                      onClick={() => navigate('/graficas')}
+                    >
+                      Ventas Generales
+                    </button>
+                    <button
+                      className="dropdown-button"
+                      onClick={() => navigate('/graficas2')}
+                    >
+                      Ventas por Fecha
+                    </button>
+                  </div>
+                )}
+
+
               </div>
               <div className="dropdown-container">
                 <button
