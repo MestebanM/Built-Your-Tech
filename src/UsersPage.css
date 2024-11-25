@@ -233,13 +233,23 @@
 /* Updated layout for separated sections */
 .users-content-container {
     display: flex;
-    justify-content: center; /* Center both sections horizontally */
-    gap: 50px; /* Space between the two sections */
-    padding: 20px;
-    align-items: flex-start;
-    margin-top: 100px; /* Offset for fixed header */
+    flex-direction: column; /* Cambia a orientación en columna */
+    align-items: center; /* Centra horizontalmente */
+    gap: 30px; /* Espacio entre los dos bloques */
+    margin-top: 120px; /* Espacio desde la barra superior */
     width: 90%;
 }
+
+.users-content-top,
+.users-content-bottom {
+    width: 100%; /* Mantén el ancho de cada sección */
+    max-width: 1200px; /* Tamaño máximo para pantallas grandes */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 
 .users-content-left {
     width: 40%;

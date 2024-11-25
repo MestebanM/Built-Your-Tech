@@ -64,7 +64,8 @@ function HomePage({ onLoginClick, user, onLogoutClick, onRegisterClick }) {
                   <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
                 </div>
               )}
-              {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+              {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
             </div>
           ) : (
             <>

@@ -28,8 +28,8 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
   const handleEliminarClose = () => {
     setShowEliminar(false);
   };
-  
-  
+
+
   const fetchAllCompras = async () => {
     try {
       const response = await fetch('https://bdbuildyourteach.dtechne.com/cara_compras/');
@@ -262,52 +262,6 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
   };
   return (
     <div className="users-page">
-
-          <div className="users-header">
-            <button className="logo-button" onClick={() => navigate('/')}>
-              <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
-              <span className="navbar-title">BUILD-YOUR-TECH</span>
-            </button>
-      
-            <div className="header-buttons">
-              {isAdmin && (
-                <>
-                  {/* Menú Ventas */}
-                  <div className="dropdown-container">
-                    <button className="navbar-button">Ventas</button>
-                    <div className="dropdown-content">
-                      <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
-                      <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
-                    </div>
-                  </div>
-      
-                  {/* Menú Compras */}
-                  <div className="dropdown-container">
-                    <button className="navbar-button">Compras</button>
-                    <div className="dropdown-content">
-                      <Link to="/compras" className="dropdown-item">Compra</Link>
-                      <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
-                    </div>
-                  </div>
-      
-                  <Link to="/users" className="navbar-button">Usuarios</Link>
-                  <Link to="/add-product" className="navbar-button">Productos</Link>
-                </>
-              )}
-              <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
-      
-              {/* Usuario */}
-              {user ? (
-                <div className="user-info">
-                  <button className="navbar-button">{user.name}</button>
-                  <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={handleLogout}>
-                      Cerrar sesión
-                    </button>
-                    <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
-                  </div>
-
-
       <div className="users-header">
         <button className="logo-button" onClick={() => navigate('/')}>
           <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
@@ -317,30 +271,16 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
         <div className="header-buttons">
           {isAdmin && (
             <>
-              <div className="navbar-dropdown">
-                <button
-                  className="navbar-button"
-                  onClick={() => setDropdownVisible((prev) => !prev)}
-                >
-                   <span>Ventas</span>
-                </button>
-                {dropdownVisible && (
-                  <div className="dropdown-options">
-                    <button
-                      className="dropdown-button"
-                      onClick={() => navigate('/graficas')}
-                    >
-                      Ventas Generales
-                    </button>
-                    <button
-                      className="dropdown-button"
-                      onClick={() => navigate('/graficas2')}
-                    >
-                      Ventas por Fecha
-                    </button>
-                  </div>
-                )}
+              {/* Menú Ventas */}
+              <div className="dropdown-container">
+                <button className="navbar-button">Ventas</button>
+                <div className="dropdown-content">
+                  <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
+                  <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                </div>
               </div>
+
+              {/* Menú Compras */}
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
@@ -348,36 +288,38 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
                 </div>
               </div>
+
               <Link to="/users" className="navbar-button">Usuarios</Link>
               <Link to="/add-product" className="navbar-button">Productos</Link>
             </>
           )}
           <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
+
+          {/* Usuario */}
           {user ? (
             <div className="user-info">
-              <button className="navbar-button" onClick={toggleDropdown}>
-                {user.name}
-              </button>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Cerrar sesión
-                  </button>
-
-                </div>
-              ) : (
-                <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
-              )}
-              <Link to="/cart">
-                <div className="cart-button">
-                  <span role="img" aria-label="cart">&#128722;</span>
-                  <span className="cart-count">{getTotalItems()}</span>
-                </div>
-              </Link>
+              <button className="navbar-button">{user.name}</button>
+              <div className="dropdown-menu">
+                <button className="dropdown-item" onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+                <button className="dropdown-item" onClick={() => setShowEliminar(true)}>Eliminar cuenta</button>
+              </div>
             </div>
-          </div>
+          ) : (
+            <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
+          )}
+          <Link to="/cart">
+            <div className="cart-button">
+              <span role="img" aria-label="cart">&#128722;</span>
+              <span className="cart-count">{getTotalItems()}</span>
+            </div>
+          </Link>
+        </div>
+      </div>
 
-          {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+      {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
 
       <div className="users-content-container">
         <div className="users-content-left">
@@ -434,8 +376,8 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
                   }
                 }}
                 readOnly={!isEditable}
+                className="user-input"
               />
-
             </div>
             <div className="user-field">
               <label>ID Compra:</label>
@@ -444,6 +386,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
                 value={userData.ID_COMPRA || ''} // Fallback para evitar undefined
                 onChange={(e) => setUserData({ ...userData, ID_COMPRA: e.target.value })}
                 readOnly={!isEditable}
+                className="user-input" // Agregada la clase
               />
             </div>
             <div className="user-field">
@@ -453,6 +396,7 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
                 value={userData.PRODUCTO_ID || ''} // Fallback para evitar undefined
                 onChange={(e) => setUserData({ ...userData, PRODUCTO_ID: e.target.value })}
                 readOnly={!isEditable}
+                className="user-input" // Agregada la clase
               />
             </div>
             <div className="user-field">
@@ -462,9 +406,11 @@ const CaraCompra = ({ user, onLogoutClick, onLoginClick }) => {
                 value={userData.CANTIDAD || ''} // Fallback para evitar undefined
                 onChange={(e) => setUserData({ ...userData, CANTIDAD: e.target.value })}
                 readOnly={!isEditable}
+                className="user-input" // Agregada la clase
               />
             </div>
           </div>
+
 
           {showConfirmButtons && (
             <div className="confirm-buttons">

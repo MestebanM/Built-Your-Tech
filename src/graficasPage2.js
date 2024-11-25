@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Chart, registerables } from 'chart.js';
 import './graficasPage2.css';
@@ -10,12 +10,7 @@ Chart.register(...registerables);
 const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [salesData] = useState([
-    { id: 1, nombre: 'Producto A', cantidad_total_vendida: 15, precio: 10, fecha: '2024-11-01' },
-    { id: 2, nombre: 'Producto B', cantidad_total_vendida: 20, precio: 15, fecha: '2024-11-02' },
-    { id: 3, nombre: 'Producto C', cantidad_total_vendida: 5, precio: 30, fecha: '2024-11-03' },
-  ]);
-
+  const [salesData, setSalesData] = useState([]); // Estado para los datos de la tabla
   const [totalGeneral, setTotalGeneral] = useState(0); // Estado para almacenar el total general
   const navigate = useNavigate();
   const chartRef = useRef(null);
@@ -33,21 +28,52 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
     setShowEliminar(false);
   };
 
-  useEffect(() => {
-    const calculateTotal = () => {
-      const total = salesData.reduce(
-        (acc, item) => acc + item.cantidad_total_vendida * item.precio,
-        0
-      );
-      setTotalGeneral(total);
-    };
-    calculateTotal(); // Calcula el total al cargar los datos iniciales
-    renderChart(salesData);
-  }, [salesData]);
+  // Función para obtener datos detallados de ventas para la tabla
+  const fetchSalesData = useCallback(async () => {
+    if (!startDate || !endDate) return;
+    try {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/compras-detalladas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ startDate, endDate }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setSalesData(data.data);
+        const total = data.data.reduce((acc, item) => acc + item.total, 0);
+        setTotalGeneral(total);
+      } else {
+        console.error('Error obteniendo datos de ventas:', data.message);
+      }
+    } catch (error) {
+      console.error('Error conectando al backend:', error);
+    }
+  }, [startDate, endDate]);
 
+  // Función para obtener datos agrupados de ventas para la gráfica
+  const fetchChartData = useCallback(async () => {
+    if (!startDate || !endDate) return;
+    try {
+      const response = await fetch('https://bdbuildyourteach.dtechne.com/backend/ventas-agrupadas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ startDate, endDate }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        renderChart(data.data);
+      } else {
+        console.error('Error obteniendo datos para la gráfica:', data.message);
+      }
+    } catch (error) {
+      console.error('Error conectando al backend:', error);
+    }
+  }, [startDate, endDate]);
+
+  // Función para renderizar la gráfica
   const renderChart = (data) => {
-    const labels = data.map((item) => item.nombre);
-    const values = data.map((item) => item.cantidad_total_vendida);
+    const labels = data.map((item) => item.fecha);
+    const values = data.map((item) => item.total_ventas);
 
     if (chartRef.current) {
       chartRef.current.destroy();
@@ -60,7 +86,7 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
         labels,
         datasets: [
           {
-            label: 'Cantidad Vendida',
+            label: 'Total Vendido por Fecha',
             data: values,
             backgroundColor: 'rgba(54, 162, 235, 0.6)',
             borderColor: 'rgba(54, 162, 235, 1)',
@@ -81,23 +107,28 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
           x: {
             title: {
               display: true,
-              text: 'Productos',
+              text: 'Fechas',
             },
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Cantidad Vendida',
-            },
-            ticks: {
-              stepSize: 5,
+              text: 'Total Vendido',
             },
           },
         },
       },
     });
   };
+
+  // Efecto para actualizar los datos al cambiar las fechas
+  useEffect(() => {
+    if (startDate && endDate) {
+      fetchSalesData();
+      fetchChartData();
+    }
+  }, [startDate, endDate, fetchSalesData, fetchChartData]);
 
   return (
     <div className="users-page">
@@ -113,22 +144,36 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">
-                  <Link to="/graficas" className="dropdown-item">Ventas Generales</Link>
-                  <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
+                  <Link to="/graficas" className="dropdown-item">
+                    Ventas Generales
+                  </Link>
+                  <Link to="/graficas2" className="dropdown-item">
+                    Ventas por Fecha
+                  </Link>
                 </div>
               </div>
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
-                  <Link to="/compras" className="dropdown-item">Compra</Link>
-                  <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
+                  <Link to="/compras" className="dropdown-item">
+                    Compra
+                  </Link>
+                  <Link to="/caracompras" className="dropdown-item">
+                    Características de Compra
+                  </Link>
                 </div>
               </div>
-              <Link to="/users" className="navbar-button">Usuarios</Link>
-              <Link to="/add-product" className="navbar-button">Productos</Link>
+              <Link to="/users" className="navbar-button">
+                Usuarios
+              </Link>
+              <Link to="/add-product" className="navbar-button">
+                Productos
+              </Link>
             </>
           )}
-          <button className="navbar-button" onClick={() => navigate('/chat')}>Asesoría IA</button>
+          <button className="navbar-button" onClick={() => navigate('/chat')}>
+            Asesoría IA
+          </button>
           {user ? (
             <div className="user-info">
               <button className="navbar-button">{user.name}</button>
@@ -136,51 +181,66 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
                 <button className="dropdown-item" onClick={handleLogout}>
                   Cerrar sesión
                 </button>
-                <button
-                  className="dropdown-item"
-                  onClick={() => setShowEliminar(true)}
-                >
+                <button className="dropdown-item" onClick={() => setShowEliminar(true)}>
                   Eliminar cuenta
                 </button>
               </div>
             </div>
           ) : (
-            <button className="navbar-button" onClick={onLoginClick}>Iniciar sesión</button>
+            <button className="navbar-button" onClick={onLoginClick}>
+              Iniciar sesión
+            </button>
           )}
           <Link to="/cart">
             <div className="cart-button">
-              <span role="img" aria-label="cart">&#128722;</span>
+              <span role="img" aria-label="cart">
+                &#128722;
+              </span>
               <span className="cart-count">{getTotalItems()}</span>
             </div>
           </Link>
         </div>
       </div>
 
-      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+      {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
 
       <div className="content">
         <div className="content-grid">
           <div className="table-section">
             <h2>Ventas por Fecha</h2>
             <div className="filters-section2">
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                placeholder="Fecha Inicio"
-              />
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                placeholder="Fecha Fin"
-              />
-              <button className="search-button">
+              <div className="date-filter">
+                <label htmlFor="startDate" className="date-label">Fecha inicial</label>
+                <input
+                  id="startDate"
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  placeholder="Fecha Inicio"
+                />
+              </div>
+              <div className="date-filter">
+                <label htmlFor="endDate" className="date-label">Fecha final</label>
+                <input
+                  id="endDate"
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  placeholder="Fecha Fin"
+                />
+              </div>
+              <button
+                className="search-button"
+                onClick={() => {
+                  fetchSalesData();
+                  fetchChartData();
+                }}
+              >
                 🔍
               </button>
             </div>
             <div className="total-section" style={{ textAlign: 'center', marginTop: '20px' }}>
-              <h3>Total: ${totalGeneral.toFixed(2)}</h3>
+              <h3>Total: {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(totalGeneral)}</h3>
             </div>
             <div className="table-wrapper">
               <table>
@@ -198,11 +258,11 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
                   {salesData.map((item, index) => (
                     <tr key={index}>
                       <td>{item.fecha}</td>
-                      <td>{item.id}</td>
-                      <td>{item.nombre}</td>
-                      <td>{item.cantidad_total_vendida}</td>
-                      <td>${item.precio}</td>
-                      <td>${item.cantidad_total_vendida * item.precio}</td>
+                      <td>{item.id_producto}</td>
+                      <td>{item.producto}</td>
+                      <td>{item.cantidad}</td>
+                      <td>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(item.precio)}</td>
+                      <td>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(item.total)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -220,6 +280,4 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
 };
 
 export default GraficasPage2;
-
-
 

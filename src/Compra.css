@@ -41,13 +41,23 @@
 
 .users-content-container {
   display: flex;
-  justify-content: center;
-  gap: 50px;
-  padding: 20px;
-  align-items: flex-start;
-  margin-top: 100px;
-  width: 90%;
+  flex-direction: column; /* Cambia a disposición en columna */
+  align-items: center; /* Centra horizontalmente */
+  gap: 30px; /* Espacio entre secciones */
+  margin-top: 120px; /* Margen superior para la barra fija */
+  width: 100%;
 }
+
+.users-content-top,
+.users-content-bottom {
+  width: 90%; /* Ajusta el ancho máximo */
+  max-width: 1200px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Alineación del formulario y ajuste de tamaños para campos */
 .users-content-left {
