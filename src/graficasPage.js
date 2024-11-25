@@ -25,12 +25,12 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
         // Concatenar ID y nombre para las etiquetas de la gráfica
         const labels = data.map((product) => `${product.id} - ${product.nombre}`);
         const salesData = data.map((product) => product.cantidad_total_vendida);
-  
+
         // Destruir la gráfica previa si existe
         if (chartRef.current) {
           chartRef.current.destroy();
         }
-  
+
         // Crear la nueva gráfica con los datos del servidor
         const ctx = document.getElementById('salesChart').getContext('2d');
         chartRef.current = new Chart(ctx, {
@@ -76,16 +76,16 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
       })
       .catch((err) => console.error('Error al obtener los datos:', err));
   }, []);
-  
+
 
   const handleEliminarClose = () => {
     setShowEliminar(false);
   };
-  
+
 
   const handleSearch = () => {
     if (searchId.trim() === '') return;
-  
+
     fetch(`https://bdbuildyourteach.dtechne.com/api/product/${searchId}`)
       .then((response) => {
         if (!response.ok) {
@@ -121,7 +121,7 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
           <img src="/BYT.jpg" alt="Logo" className="navbar-logo" />
           <span className="navbar-title">BUILD-YOUR-TECH</span>
         </button>
-  
+
         <div className="header-buttons">
           {isAdmin && (
             <>
@@ -133,7 +133,7 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/graficas2" className="dropdown-item">Ventas por Fecha</Link>
                 </div>
               </div>
-  
+
               {/* Menú Compras */}
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
@@ -142,7 +142,7 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
                   <Link to="/caracompras" className="dropdown-item">Características de Compra</Link>
                 </div>
               </div>
-  
+
               <Link to="/users" className="navbar-button">Usuarios</Link>
               <Link to="/add-product" className="navbar-button">Productos</Link>
             </>
@@ -169,8 +169,9 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
           </Link>
         </div>
       </div>
-  
-      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+
+      {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
 
 
       <div className="content">
@@ -198,13 +199,14 @@ const GraficasPage = ({ user, onLogoutClick, onLoginClick }) => {
             <input type="text" value={productInfo ? `$${productInfo.total}` : ''} disabled />
           </div>
         </div>
-  
+
         <div className="chart-section">
           <canvas id="salesChart"></canvas>
         </div>
       </div>
+
     </div>
-  );  
+  );
 };
 
 export default GraficasPage;

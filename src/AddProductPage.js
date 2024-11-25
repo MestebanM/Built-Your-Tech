@@ -370,7 +370,8 @@ const AddProductPage = ({ user, onLogoutClick, onLoginClick }) => {
               </Link>
             </div>
           </div>
-          {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+          {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
 
       <div className="add-product-content">
         <h2>Gestión de Productos</h2>

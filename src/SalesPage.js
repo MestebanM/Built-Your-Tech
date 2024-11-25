@@ -236,7 +236,8 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         />
       )}
 
-      {showEliminar && <Eliminar onClose={handleEliminarClose} />}
+      {showEliminar && <Eliminar onClose={handleEliminarClose} user={user} />}
+
 
       <footer className="footer">
         <div className="footer-section">

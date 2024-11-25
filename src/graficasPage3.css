@@ -78,13 +78,14 @@
   }
   
 
-.content {
+  .content {
     display: flex;
-    justify-content: space-between;
-    align-items: center; /* Centra verticalmente */
-    padding: 0 20px;
-    height: calc(100vh - 60px); /* Altura ajustada para excluir la barra superior */
+    flex-direction: column; /* Cambia la orientación a columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 20px; /* Espacio entre los elementos */
+    padding: 20px;
 }
+
 
 
 
@@ -133,6 +134,9 @@
   .chart-section {
     flex: 2;
     padding: 20px;
+    width: calc(100% - 100px);
+    max-width: 1000px;
+    height: 300px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
