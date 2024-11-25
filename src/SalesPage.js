@@ -106,6 +106,7 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
         <div className="header-buttons">
           {isAdmin && (
             <>
+
             <Link to="/users" className="navbar-button">Profe</Link>
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
@@ -279,3 +280,4 @@ function SalesPage({ onLoginClick, user, onLogoutClick }) {
 }
 
 export default SalesPage;
+
