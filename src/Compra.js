@@ -298,6 +298,7 @@ const Compra = ({ user, onLogoutClick, onLoginClick }) => {
           {isAdmin && (
             <>
               {/* Menú Ventas */}
+              <Link to="/users" className="navbar-button">Usuarios</Link>
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">
