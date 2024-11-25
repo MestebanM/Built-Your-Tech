@@ -141,6 +141,7 @@ const GraficasPage2 = ({ user, onLogoutClick, onLoginClick }) => {
         <div className="header-buttons">
           {isAdmin && (
             <>
+            <Link to="/users" className="navbar-button">Profe</Link>
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">

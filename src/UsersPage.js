@@ -208,8 +208,8 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
         <div className="header-buttons">
           {isAdmin && (
             <>
-
               {/* Menú Ventas adaptado */}
+              <Link to="/users" className="navbar-button">Profe</Link>
               <div className="dropdown-container">
                 <button className="navbar-button">Ventas</button>
                 <div className="dropdown-content">
@@ -219,34 +219,6 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
               </div>
 
               {/* Menú Compras */}
-
-
-              <div className="navbar-dropdown">
-                <button
-                  className="navbar-button"
-                  onClick={() => setDropdownVisible((prev) => !prev)}
-                >
-                   <span>Ventas</span>
-                </button>
-                {dropdownVisible && (
-                  <div className="dropdown-options">
-                    <button
-                      className="dropdown-button"
-                      onClick={() => navigate('/graficas')}
-                    >
-                      Ventas Generales
-                    </button>
-                    <button
-                      className="dropdown-button"
-                      onClick={() => navigate('/graficas2')}
-                    >
-                      Ventas por Fecha
-                    </button>
-                  </div>
-                )}
-              </div>
-
-
               <div className="dropdown-container">
                 <button className="navbar-button">Compras</button>
                 <div className="dropdown-content">
@@ -303,8 +275,6 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                     setUserData({
                       nombre: '',
                       correo: '',
-                      contraseña: '',
-                      rol: '',
                     });
                     setIsIdSearched(false);
                     if (id.trim() === '') {
@@ -343,26 +313,6 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
                 className="user-input"
               />
             </div>
-            <div className="user-field">
-              <label>Contraseña:</label>
-              <input
-                type="text"
-                value={userData.contraseña}
-                onChange={(e) => setUserData({ ...userData, contraseña: e.target.value })}
-                readOnly={!isEditable}
-                className="user-input"
-              />
-            </div>
-            <div className="user-field">
-              <label>Rol:</label>
-              <input
-                type="text"
-                value={userData.rol}
-                onChange={(e) => setUserData({ ...userData, rol: e.target.value })}
-                readOnly={!isEditable}
-                className="user-input"
-              />
-            </div>
           </div>
           {showConfirmButtons && (
             <div className="confirm-buttons">
@@ -385,22 +335,16 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
             <table className="user-table">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Nombre</th>
                   <th>Correo</th>
-                  <th>Contraseña</th>
-                  <th>Rol</th>
                 </tr>
               </thead>
               <tbody>
                 {allUsers.length > 0 ? (
                   allUsers.map((user) => (
                     <tr key={user.id}>
-                      <td>{user.id}</td>
                       <td>{user.nombre}</td>
                       <td>{user.correo}</td>
-                      <td>{user.contraseña.substring(0, 10)}</td>
-                      <td>{user.rol}</td>
                     </tr>
                   ))
                 ) : (
@@ -419,3 +363,4 @@ const UsersPage = ({ user, onLogoutClick, onLoginClick }) => {
 };
 
 export default UsersPage;
+
